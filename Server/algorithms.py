@@ -42,7 +42,34 @@ class Algorithms:
 
         @self.router.post("/dfs")
         def solve_with_dfs(array: list[list[int]], start: tuple[int, int], end: tuple[int, int]):
-            pass
+            try:
+                # Initialize variables for DFS algorithm
+                graph = Helper.array_to_graph(array)
+                traces = []
+                visited = {(i, j): False for i, row in enumerate(array) for j in range(len(row))}
+                stack = [start]
+                visited[start] = True
+                found = False
+
+                # Run on all the elements in the array until it finds the target
+                while stack:
+                    node = stack.pop()
+                    for neighbor in graph[node]:
+                        if not visited[neighbor]:
+                            visited[neighbor] = True
+                            stack.append(neighbor)
+                            traces.append(neighbor)
+
+                            if neighbor == end:
+                                found = True
+                                break
+
+                    if found:
+                        break
+
+                return JSONResponse(status_code=200, content=traces)
+            except:
+                return JSONResponse(status_code=500, content="An error occured in BFS algorithm")
 
         @self.router.post("/dijkstra")
         def solve_with_dijkstra(array: list[list[int]], start: tuple[int, int], end: tuple[int, int]):
