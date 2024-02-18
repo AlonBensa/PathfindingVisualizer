@@ -41,15 +41,15 @@ class Algorithms:
             
 
         @self.router.post("/dfs")
-        def solve_with_dfs(array: list[list[int]], start: tuple, end: tuple):
+        def solve_with_dfs(array: list[list[int]], start: tuple[int, int], end: tuple[int, int]):
             pass
 
         @self.router.post("/dijkstra")
-        def solve_with_dijkstra(array: list[list[int]], start: tuple, end: tuple):
+        def solve_with_dijkstra(array: list[list[int]], start: tuple[int, int], end: tuple[int, int]):
             pass
 
         @self.router.post("/A*")
-        def solve_with_aStar(array: list[list[int]], start: tuple, end: tuple):
+        def solve_with_aStar(array: list[list[int]], start: tuple[int, int], end: tuple[int, int]):
             pass
 
 class Helper:
