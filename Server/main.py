@@ -1,14 +1,26 @@
-from typing import Union
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+# uvicorn main:app --reload
 
+origins = [
+    "http://localhost",
+    "http://localhost:3000",  # Update with the actual frontend URL
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def root():
+    return {"message": "Hello, FastAPI!"}
 
+from algorithms import Algorithms
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+app.include_router(Algorithms().router, prefix="/algorithms", tags=["Algorithms"])
