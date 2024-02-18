@@ -7,17 +7,17 @@ class Algorithms:
 
     def setup_routes(self):
         @self.router.post("/bfs")
-        def solve_with_bfs(array: list[list]):
+        def solve_with_bfs(array: list[list], start: tuple, end: tuple):
             pass
 
         @self.router.post("/dfs")
-        def solve_with_bfs(array: list[list]):
+        def solve_with_bfs(array: list[list], start: tuple, end: tuple):
             pass
 
         @self.router.post("/dijkstra")
-        def solve_with_bfs(array: list[list]):
+        def solve_with_bfs(array: list[list], start: tuple, end: tuple):
             pass
 
         @self.router.post("/A*")
-        def solve_with_bfs(array: list[list]):
+        def solve_with_bfs(array: list[list], start: tuple, end: tuple):
             pass
