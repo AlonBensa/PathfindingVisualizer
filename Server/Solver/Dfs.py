@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from Helper import Helper
+from Solver.Helper import Helper
 
 class Dfs:
     def __init__(self):

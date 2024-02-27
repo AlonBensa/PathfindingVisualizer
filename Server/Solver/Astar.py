@@ -1,7 +1,7 @@
 import sys
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from Helper import Helper
+from Solver.Helper import Helper
 
 class Astar:
     def __init__(self):
