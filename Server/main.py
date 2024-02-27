@@ -1,4 +1,3 @@
-import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,5 +22,13 @@ def root():
     return {"message": "Hello, FastAPI!"}
 
 from Generator.BinaryTreeAlgorithm import BinaryTreeAlgorithm
+from Solver.Bfs import Bfs
+from Solver.Dfs import Dfs
+from Solver.Dijkstra import Dijkstra
+from Solver.Astar import Astar
 
-app.include_router(BinaryTreeAlgorithm().router, prefix="/Generator", tags=["Algorithms"])
+app.include_router(BinaryTreeAlgorithm().router, prefix="/Generator", tags=["Generator Algorithms"])
+app.include_router(Bfs().router, prefix="/Solver", tags=["Solving Algorithms"])
+app.include_router(Dfs().router, prefix="/Solver", tags=["Solving Algorithms"])
+app.include_router(Dijkstra().router, prefix="/Solver", tags=["Solving Algorithms"])
+app.include_router(Astar().router, prefix="/Solver", tags=["Solving Algorithms"])
