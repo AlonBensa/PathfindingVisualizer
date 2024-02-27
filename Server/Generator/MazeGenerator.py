@@ -5,10 +5,6 @@ class Algorithms:
         self.router = APIRouter()
         self.setup_routes()
 
-        @self.router.post("/Randomized-DFS")
-        def randomized_DFS(widht: int, height: int):
-            pass
-
         @self.router.post("/Iterative-randomized-Kruskals")
         def iterative_randomized_Kruskals(widht: int, height: int):
             pass

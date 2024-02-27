@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-
 import random
+
+from Generator.Helper import GeneratorHelper
 
 UP = 1
 LEFT = 0
@@ -14,27 +15,22 @@ class BinaryTreeAlgorithm:
     def setup_routes(self):
         @self.router.post("/Binary-Tree")
         def binary_tree(width: int, height: int):
-            maze = self.generate_empty_maze(width, height)
+            maze = GeneratorHelper.generate_empty_maze(width, height)
+            width, height =  len(maze), len(maze[0])
             traces = []
 
-            for y, row in enumerate(maze):
-                for x in range(len(row)):
-                    if len(row) % 2 == 0:
-                        if x % 2 == 1 and y < height - 1:
-                            continue
-                    else:
-                        if x % 2 == 1: continue
-
-                    if len(maze) % 2 == 0:
-                        if y % 2 == 1 and x < width - 1:
-                            continue
-                    else:
-                        if y % 2 == 1: break
-
+            for y in range(height):
+                for x in range(width):
+                    # Skip walls
+                    if x % 2 == 1: continue
+                    if y % 2 == 1: break
+                    
+                    # Mark as visited current node
                     maze[y][x] = 0
                     traces.append((y, x))
                     if x == 0 and y == 0: continue
                     
+                    # Choose direction to go next (up or left) and remove wall between them
                     direction = self.flip_coin((x, y))
                     if direction == UP:
                         maze[y-1][x] = 0
@@ -44,10 +40,6 @@ class BinaryTreeAlgorithm:
                         traces.append((y, x-1))
 
             return JSONResponse(status_code=200, content={"traces": traces, "maze": maze})
-
-    def generate_empty_maze(self, width: int, height: int):
-        maze = [[1 for _ in range(width)] for _ in range(height)]
-        return maze
     
     def flip_coin(self, indexes):
         x, y = indexes

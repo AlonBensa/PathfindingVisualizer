@@ -22,12 +22,14 @@ def root():
     return {"message": "Hello, FastAPI!"}
 
 from Generator.BinaryTreeAlgorithm import BinaryTreeAlgorithm
+from Generator.RandomizedDFS import RandomizedDFS
 from Solver.Bfs import Bfs
 from Solver.Dfs import Dfs
 from Solver.Dijkstra import Dijkstra
 from Solver.Astar import Astar
 
 app.include_router(BinaryTreeAlgorithm().router, prefix="/Generator", tags=["Generator Algorithms"])
+app.include_router(RandomizedDFS().router, prefix="/Generator", tags=["Generator Algorithms"])
 app.include_router(Bfs().router, prefix="/Solver", tags=["Solving Algorithms"])
 app.include_router(Dfs().router, prefix="/Solver", tags=["Solving Algorithms"])
 app.include_router(Dijkstra().router, prefix="/Solver", tags=["Solving Algorithms"])
