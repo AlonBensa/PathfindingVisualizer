@@ -1,3 +1,4 @@
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -21,6 +22,6 @@ app.add_middleware(
 def root():
     return {"message": "Hello, FastAPI!"}
 
-from algorithms import Algorithms
+from Generator.BinaryTreeAlgorithm import BinaryTreeAlgorithm
 
-app.include_router(Algorithms().router, prefix="/algorithms", tags=["Algorithms"])
+app.include_router(BinaryTreeAlgorithm().router, prefix="/Generator", tags=["Algorithms"])
